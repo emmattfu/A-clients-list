@@ -1,0 +1,118 @@
+<div class="container">
+  <div class="row justify-content-md-center">
+    <div class="col-6">
+      <div class="card mb-5">
+        <div class="card-body">
+          <h5 class="card-title text-center">Fill in this form to add a client</h5>
+          <form novalidate (ngSubmit)="onSubmit(form)" #form="ngForm">
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input
+                type="text"
+                class="form-control"
+                id="name"
+                placeholder="Enter your name"
+                [(ngModel)]="client.name"
+                name="name"
+                #clientName="ngModel"
+                [ngClass]="{'is-invalid': clientName.errors && form.submitted}"
+                required
+              >
+              <div class="invalid-feedback" [hidden]="!clientName.errors?.required">Name is required</div>
+            </div>
+            <div class="form-group">
+              <label for="email">Email address</label>
+              <input
+                type="email"
+                class="form-control"
+                id="email"
+                placeholder="Enter your email"
+                [(ngModel)]="client.email"
+                name="email"
+                #clientEmail="ngModel"
+                [ngClass]="{'is-invalid': clientEmail.errors && form.submitted}"
+                required
+                email
+              >
+              <div class="invalid-feedback" [hidden]="!clientEmail.errors?.required">Email is required</div>
+              <div class="invalid-feedback" [hidden]="!clientEmail.errors?.email">Fill in a valid email address</div>
+            </div>
+            <div class="form-group">
+              <label for="age">Age</label>
+              <input
+                type="text"
+                class="form-control"
+                id="age"
+                placeholder="Enter your age"
+                [(ngModel)]="client.age"
+                name="age"
+                #clientAge="ngModel"
+                [ngClass]="{'is-invalid': clientAge.errors && form.submitted}"
+                pattern="\d*"
+                required
+                maxlength="3"
+              >
+              <div class="invalid-feedback" [hidden]="!clientAge.errors?.required">Age is required</div>
+              <div class="invalid-feedback" [hidden]="!clientAge.errors?.pattern">There must be a number</div>
+            </div>
+            <div class="form-group">
+              <label for="phone-number">Phone number</label>
+              <input
+                type="text"
+                class="form-control"
+                id="phone-number"
+                placeholder="Enter your phone number"
+                [(ngModel)]="client.phoneNumber"
+                name="phoneNumber"
+                #clientPhoneNumber="ngModel"
+                [ngClass]="{'is-invalid': clientPhoneNumber.errors && form.submitted}"
+                required
+              >
+              <div class="invalid-feedback" [hidden]="!clientPhoneNumber.errors?.required">Phone number is required</div>
+            </div>
+            <div class="form-group">
+              <label for="comments">Your comments</label>
+              <textarea
+                class="form-control"
+                id="comments" rows="3"
+                [(ngModel)]="client.comments"
+                name="comments">
+              </textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row justify-content-md-center">
+    <div class="col-9">
+      <table class="table table-bordered table-hover text-center" *ngIf="clientsList">
+        <thead>
+        <tr>
+          <th scope="col">№</th>
+          <th scope="col">Name</th>
+          <th scope="col">Email</th>
+          <th scope="col">Age</th>
+          <th scope="col">Phone number</th>
+          <th scope="col">Comment</th>
+          <th scope="col">Remove</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let client of clientsList" class="text-center">
+          <th scope="row">{{ (clientsList.indexOf(client) + 1) }}</th>
+          <td>{{ client.name }}</td>
+          <td>{{ client.email }}</td>
+          <td>{{ client.age }}</td>
+          <td>{{ client.phoneNumber}}</td>
+          <td>{{ client.comments || 'n/a' }}</td>
+          <td>
+            <i class="fas fa-times" (click)="removeClient(client)"></i>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
