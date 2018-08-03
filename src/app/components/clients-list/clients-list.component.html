@@ -67,8 +67,12 @@
                 #clientPhoneNumber="ngModel"
                 [ngClass]="{'is-invalid': clientPhoneNumber.errors && form.submitted}"
                 required
+                pattern="\d*"
+                minlength="9"
               >
               <div class="invalid-feedback" [hidden]="!clientPhoneNumber.errors?.required">Phone number is required</div>
+              <div class="invalid-feedback" [hidden]="!clientPhoneNumber.errors?.pattern">There must be numbers</div>
+              <div class="invalid-feedback" [hidden]="!clientPhoneNumber.errors?.minlength">Minimum 9 numbers</div>
             </div>
             <div class="form-group">
               <label for="comments">Your comments</label>
