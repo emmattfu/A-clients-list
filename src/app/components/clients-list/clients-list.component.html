@@ -91,7 +91,7 @@
   </div>
   <div class="row justify-content-md-center">
     <div class="col-9">
-      <table class="table table-bordered table-hover text-center" *ngIf="clientsList">
+      <table class="table table-bordered table-hover text-center" *ngIf="clientsList.length">
         <thead>
         <tr>
           <th scope="col">№</th>
@@ -104,15 +104,15 @@
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let client of clientsList" class="text-center">
-          <th scope="row">{{ (clientsList.indexOf(client) + 1) }}</th>
+        <tr *ngFor="let client of clientsList; let i = index" class="text-center">
+          <th scope="row">{{ (i + 1) }}</th>
           <td>{{ client.name }}</td>
           <td>{{ client.email }}</td>
           <td>{{ client.age }}</td>
           <td>{{ client.phoneNumber}}</td>
           <td>{{ client.comments || 'n/a' }}</td>
           <td>
-            <i class="fas fa-times" (click)="removeClient(client)"></i>
+            <i class="fas fa-times" (click)="removeClient(i)"></i>
           </td>
         </tr>
         </tbody>

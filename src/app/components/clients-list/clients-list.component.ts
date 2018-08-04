@@ -18,12 +18,9 @@ export class ClientsListComponent implements OnInit {
   comments: ''
   };
 
-  clientsList: Client[];
-
-
+  clientsList: Client[] = [];
 
   @ViewChild('form') form: NgForm;
-
 
   constructor() { }
 
@@ -34,8 +31,6 @@ export class ClientsListComponent implements OnInit {
   onSubmit(form) {
 
     if (form.invalid) return;
-
-    if (!this.clientsList)  this.clientsList = [];
 
     const newClient = {
       name: this.client.name,
@@ -51,11 +46,8 @@ export class ClientsListComponent implements OnInit {
 
   }
 
-  removeClient(client) {
-    this.clientsList.splice(this.clientsList.indexOf(client), 1);
-
-    if (!this.clientsList.length) this.clientsList = null;
-
+  removeClient(index) {
+    this.clientsList.splice(index, 1);
   }
 
 }
