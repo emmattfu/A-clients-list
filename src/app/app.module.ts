@@ -4,7 +4,9 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { ClientsListComponent } from './components/clients-list/clients-list.component';
-import {FormsModule} from "@angular/forms";
+import { FormsModule } from "@angular/forms";
+import {NgxMaskModule} from 'ngx-mask'
+
 
 @NgModule({
   declarations: [
@@ -14,7 +16,8 @@ import {FormsModule} from "@angular/forms";
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    NgxMaskModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

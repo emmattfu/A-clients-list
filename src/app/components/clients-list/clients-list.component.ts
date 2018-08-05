@@ -2,7 +2,6 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Client } from '../../models/ClientsListItem'
 import { NgForm } from "@angular/forms";
 
-
 @Component({
   selector: 'app-clients-list',
   templateUrl: './clients-list.component.html',
